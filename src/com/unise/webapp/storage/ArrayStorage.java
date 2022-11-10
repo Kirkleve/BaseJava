@@ -1,7 +1,6 @@
 package com.unise.webapp.storage;
 
 import com.unise.webapp.model.Resume;
-
 import java.util.Arrays;
 
 public class ArrayStorage {
@@ -9,7 +8,7 @@ public class ArrayStorage {
     private int count;
 
     public void clear() {
-        Arrays.fill(storage,0,count,null);
+        Arrays.fill(storage, 0, count, null);
         count = 0;
     }
 
@@ -52,7 +51,7 @@ public class ArrayStorage {
     public int size() {
         return count;
     }
-    
+
     public int findResume(Resume r) {
         for (int i = 0; i < count; i++) {
             if (r.equals(storage[i]))
