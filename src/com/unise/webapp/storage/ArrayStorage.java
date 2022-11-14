@@ -15,13 +15,11 @@ public class ArrayStorage {
         count = 0;
     }
 
-    public void update(Resume r, String str) {
+    public void update(Resume r) {
         int index = getIndex(r.getUuid());
         if (index == -1) {
             System.out.println("Такого резюме не существует, попробуйте снова!");
         } else {
-            r = new Resume();
-            r.setUuid(str);
             storage[index] = r;
         }
     }
@@ -47,6 +45,8 @@ public class ArrayStorage {
             storage[index] = storage[count - 1];
             storage[count - 1] = null;
             count--;
+        } else {
+            System.out.println("Такого резюме нету!");
         }
     }
 
