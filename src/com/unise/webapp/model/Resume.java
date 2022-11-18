@@ -1,7 +1,22 @@
 package com.unise.webapp.model;
 
-public class Resume {
+import java.util.Objects;
+
+public class Resume implements Comparable<Resume>{
     private String uuid;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Resume resume = (Resume) o;
+        return uuid.equals(resume.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
+    }
 
     public String getUuid() {
         return uuid;
@@ -14,5 +29,10 @@ public class Resume {
     @Override
     public String toString() {
         return uuid;
+    }
+
+    @Override
+    public int compareTo(Resume o) {
+        return uuid.compareTo(o.uuid);
     }
 }
