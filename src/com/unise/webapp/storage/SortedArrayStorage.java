@@ -6,35 +6,16 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage{
 
-
     @Override
-    public void clear() {
-
+    protected void removeResume(int index) {
+        if (index < STORAGE_LIMIT) {
+            System.arraycopy(storage, index + 1, storage, index, count - index);
+        }
     }
 
     @Override
-    public void update(Resume r) {
-
-    }
-
-    @Override
-    public void save(Resume r) {
-
-    }
-
-    @Override
-    public void delete(String uuid) {
-
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return new Resume[0];
-    }
-
-    @Override
-    protected void assignment(int index, Resume r) {
-
+    protected void saveResume(int index, Resume r) {
+        storage[index] = r;
     }
 
     @Override

@@ -4,8 +4,14 @@ import com.unise.webapp.model.Resume;
 
 public class ArrayStorage extends AbstractArrayStorage {
 
+
     @Override
-    protected void assignment(int index, Resume r) {
+    protected void removeResume(int index) {
+        storage[index] = storage[count - 1];
+    }
+
+    @Override
+    protected void saveResume(int index, Resume r) {
         storage[index] = r;
     }
 

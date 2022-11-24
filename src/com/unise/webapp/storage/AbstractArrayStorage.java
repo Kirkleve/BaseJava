@@ -32,7 +32,7 @@ public abstract class AbstractArrayStorage implements Storage {
         if (index < 0) {
             System.out.println("Такого резюме не существует, попробуйте снова!");
         } else {
-            assignment(index, r);
+            storage[index] = r;
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstractArrayStorage implements Storage {
         } else if (getIndex(r.getUuid()) != -1) {
             System.out.println("Такое резюме существует!");
         } else {
-            assignment(count, r);
+            saveResume(count, r);
             count++;
         }
     }
@@ -52,7 +52,7 @@ public abstract class AbstractArrayStorage implements Storage {
         if (index > 0) {
             System.out.println("Такого резюме нету!");
         } else {
-            storage[index] = storage[count - 1];
+            removeResume(index);
             storage[count - 1] = null;
             count--;
         }
@@ -62,7 +62,9 @@ public abstract class AbstractArrayStorage implements Storage {
         return Arrays.copyOf(storage, count);
     }
 
-    protected abstract void assignment(int index, Resume r);
+    protected abstract void removeResume(int index);
+
+    protected abstract void saveResume(int index, Resume r);
 
     protected abstract int getIndex(String uuid);
 
