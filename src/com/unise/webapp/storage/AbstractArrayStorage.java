@@ -37,12 +37,13 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public void save(Resume r) {
+        int index = getIndex(r.getUuid());
         if (count >= STORAGE_LIMIT) {
             System.out.println("Увы места в памяти для хранения резюме нету!");
-        } else if (getIndex(r.getUuid()) != -1) {
+        } else if (index >= 0) {
             System.out.println("Такое резюме существует!");
         } else {
-            saveResume(count, r);
+            saveResume(index, r);
             count++;
         }
     }

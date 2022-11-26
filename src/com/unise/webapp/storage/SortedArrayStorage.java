@@ -15,7 +15,8 @@ public class SortedArrayStorage extends AbstractArrayStorage{
 
     @Override
     protected void saveResume(int index, Resume r) {
-        storage[index] = r;
+        int newIndex = -index -1;
+        storage[newIndex] = r;
     }
 
     @Override
