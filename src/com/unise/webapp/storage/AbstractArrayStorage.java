@@ -45,7 +45,7 @@ public abstract class AbstractArrayStorage implements Storage {
         } else if (index >= 0) {
             throw new ExistStorageException(r.getUuid());
         } else {
-            saveResume(index, r);
+            saveResume(count, r);
             count++;
         }
     }
