@@ -107,7 +107,7 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     void deleteNotExist() {
-        assertThrows(ArrayIndexOutOfBoundsException.class, () ->
+        assertThrows(NotExistStorageException.class, () ->
                 storage.delete(UUID_NOT_EXIST));
     }
 

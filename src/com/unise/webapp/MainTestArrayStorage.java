@@ -1,14 +1,12 @@
 package com.unise.webapp;
 
 import com.unise.webapp.model.Resume;
-import com.unise.webapp.storage.SortedArrayStorage;
+import com.unise.webapp.storage.ListStorage;
 import com.unise.webapp.storage.Storage;
 
-/**
- * Test for your com.unise.webapp.storage.ArrayStorage implementation
- */
+
 public class MainTestArrayStorage {
-    static final Storage ARRAY_STORAGE = new SortedArrayStorage();
+    static final Storage ARRAY_STORAGE = new ListStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume("uuid1");
@@ -36,7 +34,7 @@ public class MainTestArrayStorage {
 
     static void printAll() {
         System.out.println("\nGet All");
-        for (Resume r : ARRAY_STORAGE.getAll()) {
+        for (Object r : ARRAY_STORAGE.getAll()) {
             System.out.println(r);
         }
     }

@@ -4,7 +4,7 @@ import com.unise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public class SortedArrayStorage extends AbstractArrayStorage{
+public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void removeResume(int index) {
@@ -20,7 +20,7 @@ public class SortedArrayStorage extends AbstractArrayStorage{
     }
 
     @Override
-    protected int getIndex(String uuid) {
+    protected Integer getIndex(String uuid) {
         Resume searchKey = new Resume(uuid);
         return Arrays.binarySearch(storage, 0, count, searchKey);
     }
