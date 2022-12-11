@@ -10,6 +10,32 @@ public class ListStorage extends AbstractStorage {
     protected final List<Resume> storage = new ArrayList<>();
 
     @Override
+    protected void doSave(Resume r, Object key) {
+        storage.add(r);
+    }
+
+    @Override
+    protected Resume doGet(Object key) {
+        return storage.get((Integer) key);
+    }
+
+    @Override
+    protected void doUpdate(Resume r, Object key) {
+        storage.set((Integer) key, r);
+    }
+
+    @Override
+    protected void doDelete(Object key) {
+        storage.remove(((Integer) key).intValue());
+    }
+
+    @Override
+    public Resume[] getAll() {
+        Resume[] getStorage = new Resume[storage.size()];
+        return storage.toArray(getStorage);
+    }
+
+    @Override
     public int size() {
         return storage.size();
     }
@@ -20,40 +46,17 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public void update(Resume r) {
-        storage.set(notExist(r.getUuid()), r);
+    protected boolean isExist(Object key) {
+        return key != null;
     }
 
     @Override
-    public void save(Resume r) {
-        if(exist(r.getUuid())) {
-            storage.add(r);
-        }
-    }
-
-    @Override
-    public Resume get(String uuid) {
-        return storage.get(notExist(uuid));
-    }
-
-    @Override
-    public void delete(String uuid) {
-        storage.remove(storage.get(notExist(uuid)));
-    }
-
-    @Override
-    public Resume[] getAll() {
-        Resume[] getStorage = new Resume[storage.size()];
-        return storage.toArray(getStorage);
-    }
-
-    @Override
-    protected Integer getIndex(String str) {
+    protected Integer getSearchKey(String uuid) {
         for (int i = 0; i < storage.size(); i++) {
-            if (str.equals(storage.get(i).getUuid())) {
+            if (uuid.equals(storage.get(i).getUuid())) {
                 return i;
             }
         }
-        return -1;
+        return null;
     }
 }

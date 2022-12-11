@@ -10,38 +10,35 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int count;
 
-    public int size() {
-        return count;
-    }
+    protected abstract void removeResume(int index);
 
-    public void clear() {
-        Arrays.fill(storage, 0, count, null);
-        count = 0;
-    }
+    protected abstract void saveResume(int index, Resume r);
+
+    protected abstract Integer getSearchKey(String uuid);
 
     @Override
-    public Resume get(String uuid) {
-        return storage[notExist(uuid)];
-    }
-
-    @Override
-    public void update(Resume r) {
-        storage[notExist(r.getUuid())] = r;
-    }
-
-    @Override
-    public void save(Resume r) {
+    protected void doSave(Resume r, Object key) {
         if (count == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
-        } else if (exist(r.getUuid())) {
-            saveResume(count, r);
+        } else {
+            saveResume((Integer) key, r);
             count++;
         }
     }
 
     @Override
-    public void delete(String uuid) {
-        removeResume(notExist(uuid));
+    protected Resume doGet(Object key) {
+        return storage[(int) key];
+    }
+
+    @Override
+    protected void doUpdate(Resume r, Object key) {
+        storage[(int) key] = r;
+    }
+
+    @Override
+    protected void doDelete(Object key) {
+        removeResume((Integer) key);
         storage[count - 1] = null;
         count--;
     }
@@ -51,11 +48,19 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return Arrays.copyOf(storage, count);
     }
 
+    @Override
+    protected boolean isExist(Object key) {
+        return (Integer) key >= 0;
+    }
 
-    protected abstract void removeResume(int index);
 
-    protected abstract void saveResume(int index, Resume r);
+    public int size() {
+        return count;
+    }
 
-    protected abstract Integer getIndex(String uuid);
+    public void clear() {
+        Arrays.fill(storage, 0, count, null);
+        count = 0;
+    }
 
 }
