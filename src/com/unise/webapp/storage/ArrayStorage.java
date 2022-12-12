@@ -11,8 +11,8 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void saveResume(int index, Resume r) {
-        storage[index] = r;
+    protected void saveResume(Resume r) {
+        storage[count] = r;
     }
 
     protected Integer getSearchKey(String uuid) {

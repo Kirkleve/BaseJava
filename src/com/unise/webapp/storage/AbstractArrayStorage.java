@@ -12,7 +12,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected abstract void removeResume(int index);
 
-    protected abstract void saveResume(int index, Resume r);
+    protected abstract void saveResume(Resume r);
 
     protected abstract Integer getSearchKey(String uuid);
 
@@ -21,7 +21,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         if (count == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         } else {
-            saveResume((Integer) key, r);
+            saveResume(r);
             count++;
         }
     }

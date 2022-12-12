@@ -14,9 +14,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void saveResume(int index, Resume r) {
-        System.arraycopy(storage, index, storage, index + 1, count - index);
-        storage[index] = r;
+    protected void saveResume(Resume r) {
+        System.arraycopy(storage, count, storage, count + 1, count);
+        storage[count] = r;
     }
 
     @Override
