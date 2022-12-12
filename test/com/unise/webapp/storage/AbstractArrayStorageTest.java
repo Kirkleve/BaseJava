@@ -2,7 +2,6 @@ package com.unise.webapp.storage;
 
 import com.unise.webapp.exception.ExistStorageException;
 import com.unise.webapp.exception.NotExistStorageException;
-import com.unise.webapp.exception.StorageException;
 import com.unise.webapp.model.Resume;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -77,18 +76,18 @@ public abstract class AbstractArrayStorageTest {
         assertSize(4);
     }
 
-    @Test
-    void saveStorageOverFlow() {
-        try {
-            storage.clear();
-            for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
-            }
-        } catch (StorageException e) {
-            fail("overflow occurred ahead of time");
-        }
-        assertThrows(StorageException.class, () -> storage.save(new Resume()));
-    }
+//    @Test
+//    void saveStorageOverFlow() {
+//        try {
+//            storage.clear();
+//            for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
+//                storage.save(new Resume());
+//            }
+//        } catch (StorageException e) {
+//            fail("overflow occurred ahead of time");
+//        }
+//        assertThrows(StorageException.class, () -> storage.save(new Resume()));
+//    }
 
     @Test
     void saveExistResume() {
