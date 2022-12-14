@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MapStorage extends AbstractStorage {
 
-    protected final LinkedHashMap<Object, Resume> storage = new LinkedHashMap<>();
+    protected final Map<String, Resume> storage = new LinkedHashMap<>();
 
     @Override
     protected void doUpdate(Resume r, Object key) {
@@ -29,16 +29,6 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    protected Object getSearchKey(String uuid) {
-        return storage.get(uuid);
-    }
-
-    @Override
-    protected boolean isExist(Object key) {
-        return key != null;
-    }
-
-    @Override
     public void clear() {
         storage.clear();
     }
@@ -52,5 +42,15 @@ public class MapStorage extends AbstractStorage {
     public Object[] getAll() {
         Collection<Resume> resumes = storage.values();
         return resumes.toArray();
+    }
+
+    @Override
+    protected Object getSearchKey(String uuid) {
+        return storage.get(uuid);
+    }
+
+    @Override
+    protected boolean isExist(Object key) {
+        return key != null;
     }
 }
